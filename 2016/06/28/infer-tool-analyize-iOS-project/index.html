@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>用infer工具分析iOS项目 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="infer是facebook推出的内存静态分析工具，用infer可以分析Objective-C/C编写的iOS项目。
+infer环境配置infer的官方网站是：http://fbinfer.com/ 。 在Mac下，安装infer：1brew install infer
+诊断iOS项目，需要安装facebook-clang-plugin插件，通过brew方式安装infer的时候，facebook-">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用infer工具分析iOS项目">
+<meta property="og:url" content="http://yoursite.com/2016/06/28/infer-tool-analyize-iOS-project/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="infer是facebook推出的内存静态分析工具，用infer可以分析Objective-C/C编写的iOS项目。
+infer环境配置infer的官方网站是：http://fbinfer.com/ 。 在Mac下，安装infer：1brew install infer
+诊断iOS项目，需要安装facebook-clang-plugin插件，通过brew方式安装infer的时候，facebook-">
+<meta property="og:updated_time" content="2016-06-28T10:32:11.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="用infer工具分析iOS项目">
+<meta name="twitter:description" content="infer是facebook推出的内存静态分析工具，用infer可以分析Objective-C/C编写的iOS项目。
+infer环境配置infer的官方网站是：http://fbinfer.com/ 。 在Mac下，安装infer：1brew install infer
+诊断iOS项目，需要安装facebook-clang-plugin插件，通过brew方式安装infer的时候，facebook-">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-infer-tool-analyize-iOS-project" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/06/28/infer-tool-analyize-iOS-project/" class="article-date">
+  <time datetime="2016-06-28T07:08:38.000Z" itemprop="datePublished">2016-06-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      用infer工具分析iOS项目
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>infer是facebook推出的内存静态分析工具，用infer可以分析Objective-C/C编写的iOS项目。</p>
+<h3 id="infer环境配置"><a href="#infer环境配置" class="headerlink" title="infer环境配置"></a>infer环境配置</h3><p>infer的官方网站是：<a href="http://fbinfer.com/" target="_blank" rel="external">http://fbinfer.com/</a> 。 在Mac下，安装infer：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install infer</span><br></pre></td></tr></table></figure></p>
+<p>诊断iOS项目，需要安装facebook-clang-plugin插件，通过brew方式安装infer的时候，facebook-clang-plugin会自动安装。</p>
+<h3 id="分析xcodeproj项目"><a href="#分析xcodeproj项目" class="headerlink" title="分析xcodeproj项目"></a>分析xcodeproj项目</h3><p>以aq项目为例，在terminal中进入aq项目中aq.xcodeproj文件所在目录，执行infer命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ infer -- xcodebuild -target &quot;anqing&quot; -configuration &quot;Release&quot; -sdk iphonesimulator</span><br></pre></td></tr></table></figure></p>
+<p>输出的分析文件保存在infer-out/bugs.txt。</p>
+<h3 id="分析Pod管理的项目"><a href="#分析Pod管理的项目" class="headerlink" title="分析Pod管理的项目"></a>分析Pod管理的项目</h3><p>以jia项目为例，在terminal中进入jia项目中jia.xcworkspace文件所在目录，执行infer命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ infer -- xcodebuild -workspace jia.xcworkspace -scheme &quot;jia - Debug&quot; -configuration &quot;Debug&quot; -sdk iphonesimulator</span><br></pre></td></tr></table></figure></p>
+<p>分析文件同上。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/06/28/infer-tool-analyize-iOS-project/" data-id="cipzap5a70000uepygsbyi0in" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/06/28/how-to-create-github-blog-using-hexo/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">how to create github io blog by using hexo</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/06/28/infer-tool-analyize-iOS-project/">用infer工具分析iOS项目</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/28/how-to-create-github-blog-using-hexo/">how to create github io blog by using hexo</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/27/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
