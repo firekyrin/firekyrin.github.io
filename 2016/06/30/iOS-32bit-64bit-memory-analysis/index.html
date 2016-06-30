@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="系统," />
+  <meta name="keywords" content="系统,iOS开发," />
 
 
 
@@ -84,19 +84,22 @@
 
 
 
-<meta name="description" content="在Mac上安装brew可以通过http://brew.sh/ 提供的方法安装。
-brew的常用命令123456brew update #更新本地软件源的索引仓库brew uninstall infer #卸载inferbrew install infer #安装inferbrew list #列出所有brew安装的软件brew list infer #列出infer中的文件列表brew info">
+<meta name="description" content="描述iOS32位系统和64位系统按16byte对齐，每次分配内存按照16*nbyte分配；32位系统指针大小4byte，64位系统指针大小8byte；每个类分配对象的时候需要分配isa指针的内存，因此以下XModel对象的内存分配大小为：
+12@interface XModel : NSObject &amp;#123;&amp;#125;
+对象分配内存大小为16byte(isa占8byte，空余8byte为了对">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mac上用brew安装软件包的常用用法">
-<meta property="og:url" content="http://yoursite.com/2016/06/29/install-package-with-brew/index.html">
+<meta property="og:title" content="iOS的32位和64位系统内存对齐分析">
+<meta property="og:url" content="http://yoursite.com/2016/06/30/iOS-32bit-64bit-memory-analysis/index.html">
 <meta property="og:site_name" content="Hexo，你不看看么">
-<meta property="og:description" content="在Mac上安装brew可以通过http://brew.sh/ 提供的方法安装。
-brew的常用命令123456brew update #更新本地软件源的索引仓库brew uninstall infer #卸载inferbrew install infer #安装inferbrew list #列出所有brew安装的软件brew list infer #列出infer中的文件列表brew info">
-<meta property="og:updated_time" content="2016-06-29T10:39:23.000Z">
+<meta property="og:description" content="描述iOS32位系统和64位系统按16byte对齐，每次分配内存按照16*nbyte分配；32位系统指针大小4byte，64位系统指针大小8byte；每个类分配对象的时候需要分配isa指针的内存，因此以下XModel对象的内存分配大小为：
+12@interface XModel : NSObject &amp;#123;&amp;#125;
+对象分配内存大小为16byte(isa占8byte，空余8byte为了对">
+<meta property="og:updated_time" content="2016-06-30T07:42:20.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mac上用brew安装软件包的常用用法">
-<meta name="twitter:description" content="在Mac上安装brew可以通过http://brew.sh/ 提供的方法安装。
-brew的常用命令123456brew update #更新本地软件源的索引仓库brew uninstall infer #卸载inferbrew install infer #安装inferbrew list #列出所有brew安装的软件brew list infer #列出infer中的文件列表brew info">
+<meta name="twitter:title" content="iOS的32位和64位系统内存对齐分析">
+<meta name="twitter:description" content="描述iOS32位系统和64位系统按16byte对齐，每次分配内存按照16*nbyte分配；32位系统指针大小4byte，64位系统指针大小8byte；每个类分配对象的时候需要分配isa指针的内存，因此以下XModel对象的内存分配大小为：
+12@interface XModel : NSObject &amp;#123;&amp;#125;
+对象分配内存大小为16byte(isa占8byte，空余8byte为了对">
 
 
 
@@ -117,9 +120,9 @@ brew的常用命令123456brew update #更新本地软件源的索引仓库brew u
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/06/29/install-package-with-brew/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/06/30/iOS-32bit-64bit-memory-analysis/"/>
 
-  <title> Mac上用brew安装软件包的常用用法 | Hexo，你不看看么 </title>
+  <title> iOS的32位和64位系统内存对齐分析 | Hexo，你不看看么 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -249,7 +252,7 @@ brew的常用命令123456brew update #更新本地软件源的索引仓库brew u
             
             
               
-                Mac上用brew安装软件包的常用用法
+                iOS的32位和64位系统内存对齐分析
               
             
           </h1>
@@ -261,8 +264,8 @@ brew的常用命令123456brew update #更新本地软件源的索引仓库brew u
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-29T18:32:44+08:00" content="2016-06-29">
-              2016-06-29
+            <time itemprop="dateCreated" datetime="2016-06-30T15:30:40+08:00" content="2016-06-30">
+              2016-06-30
             </time>
           </span>
 
@@ -308,9 +311,16 @@ brew的常用命令123456brew update #更新本地软件源的索引仓库brew u
       
 
       
-        <p>在Mac上安装brew可以通过<a href="http://brew.sh/" target="_blank" rel="external">http://brew.sh/</a> 提供的方法安装。</p>
-<h3 id="brew的常用命令"><a href="#brew的常用命令" class="headerlink" title="brew的常用命令"></a>brew的常用命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">brew update #更新本地软件源的索引仓库</span><br><span class="line">brew uninstall infer #卸载infer</span><br><span class="line">brew install infer #安装infer</span><br><span class="line">brew list #列出所有brew安装的软件</span><br><span class="line">brew list infer #列出infer中的文件列表</span><br><span class="line">brew info infer #打印infer的信息</span><br></pre></td></tr></table></figure>
-<h3 id="brew安装备注"><a href="#brew安装备注" class="headerlink" title="brew安装备注"></a>brew安装备注</h3><p>Mac 的OS X EI Capitan系统引入了SIP保护机制，有些软件安装需要授权，最好关闭。</p>
+        <h3 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h3><p>iOS32位系统和64位系统按16byte对齐，每次分配内存按照16*nbyte分配；32位系统指针大小4byte，64位系统指针大小8byte；每个类分配对象的时候需要分配isa指针的内存，因此以下XModel对象的内存分配大小为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@interface XModel : NSObject &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对象分配内存大小为16byte(isa占8byte，空余8byte为了对齐）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@interface Model : NSObject &#123;</span><br><span class="line">	int a1;</span><br><span class="line">	NSString *a2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>32位系统下，对象分配内存大小为16byte（isa占8byte,a1占4byte，a2指针占4byte）；<br>64位系统下，对象分配内存大小为32byte（isa占8byte，a1占4byte，a2指针占8byte，空余12byte为对齐）。</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>苹果系统的基本数据类型的内存大小和对其字节参考为：</p>
+<blockquote>
+<p>64-Bit Transition Guide for Cocoa Touch<br><a href="https://developer.apple.com/library/ios/documentation/General/Conceptual/CocoaTouch64BitGuide/Major64-BitChanges/Major64-BitChanges.html" target="_blank" rel="external">https://developer.apple.com/library/ios/documentation/General/Conceptual/CocoaTouch64BitGuide/Major64-BitChanges/Major64-BitChanges.html</a></p>
+</blockquote>
+<p>结束。</p>
 
       
     </div>
@@ -334,6 +344,8 @@ brew的常用命令123456brew update #更新本地软件源的索引仓库brew u
           
             <a href="/tags/系统/" rel="tag">#系统</a>
           
+            <a href="/tags/iOS开发/" rel="tag">#iOS开发</a>
+          
         </div>
       
 
@@ -341,17 +353,13 @@ brew的常用命令123456brew update #更新本地软件源的索引仓库brew u
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/06/28/infer-tool-analyize-iOS-project/" rel="next" title="用infer工具分析iOS项目">
-                <i class="fa fa-chevron-left"></i> 用infer工具分析iOS项目
+              <a href="/2016/06/29/install-package-with-brew/" rel="next" title="Mac上用brew安装软件包的常用用法">
+                <i class="fa fa-chevron-left"></i> Mac上用brew安装软件包的常用用法
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/06/30/iOS-32bit-64bit-memory-analysis/" rel="prev" title="iOS的32位和64位系统内存对齐分析">
-                iOS的32位和64位系统内存对齐分析 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -465,7 +473,7 @@ brew的常用命令123456brew update #更新本地软件源的索引仓库brew u
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#brew的常用命令"><span class="nav-number">1.</span> <span class="nav-text">brew的常用命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#brew安装备注"><span class="nav-number">2.</span> <span class="nav-text">brew安装备注</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#描述"><span class="nav-number">1.</span> <span class="nav-text">描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结论"><span class="nav-number">2.</span> <span class="nav-text">结论</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
           </div>
         </section>
