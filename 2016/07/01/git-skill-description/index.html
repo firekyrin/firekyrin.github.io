@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="站点," />
+  <meta name="keywords" content="系统," />
 
 
 
@@ -84,22 +84,19 @@
 
 
 
-<meta name="description" content="infer是facebook推出的内存静态分析工具，用infer可以分析Objective-C/C编写的iOS项目。
-infer环境配置infer的官方网站是：http://fbinfer.com/ 。 在Mac下，安装infer：1brew install infer
-诊断iOS项目，需要安装facebook-clang-plugin插件，通过brew方式安装infer的时候，facebook-">
+<meta name="description" content="常用命令123git log #查看提交日志git show 3d503 #查看commitid为3d503的loggit checkout 3d503 yuan/yuan.xcodeproj/project.pbxproj #将某个文件回滚到之前的某一个commitid版本
+回滚提交（复杂情况）如果你发现最新的一次提交忘了加某个文件，你可以通过 git commit —amend来修复，它会把最">
 <meta property="og:type" content="article">
-<meta property="og:title" content="用infer工具分析iOS项目">
-<meta property="og:url" content="http://yoursite.com/2016/06/28/infer-tool-analyize-iOS-project/index.html">
+<meta property="og:title" content="git使用技巧总结">
+<meta property="og:url" content="http://yoursite.com/2016/07/01/git-skill-description/index.html">
 <meta property="og:site_name" content="Hexo，你不看看么">
-<meta property="og:description" content="infer是facebook推出的内存静态分析工具，用infer可以分析Objective-C/C编写的iOS项目。
-infer环境配置infer的官方网站是：http://fbinfer.com/ 。 在Mac下，安装infer：1brew install infer
-诊断iOS项目，需要安装facebook-clang-plugin插件，通过brew方式安装infer的时候，facebook-">
-<meta property="og:updated_time" content="2016-06-29T05:56:31.000Z">
+<meta property="og:description" content="常用命令123git log #查看提交日志git show 3d503 #查看commitid为3d503的loggit checkout 3d503 yuan/yuan.xcodeproj/project.pbxproj #将某个文件回滚到之前的某一个commitid版本
+回滚提交（复杂情况）如果你发现最新的一次提交忘了加某个文件，你可以通过 git commit —amend来修复，它会把最">
+<meta property="og:updated_time" content="2016-07-01T10:48:05.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="用infer工具分析iOS项目">
-<meta name="twitter:description" content="infer是facebook推出的内存静态分析工具，用infer可以分析Objective-C/C编写的iOS项目。
-infer环境配置infer的官方网站是：http://fbinfer.com/ 。 在Mac下，安装infer：1brew install infer
-诊断iOS项目，需要安装facebook-clang-plugin插件，通过brew方式安装infer的时候，facebook-">
+<meta name="twitter:title" content="git使用技巧总结">
+<meta name="twitter:description" content="常用命令123git log #查看提交日志git show 3d503 #查看commitid为3d503的loggit checkout 3d503 yuan/yuan.xcodeproj/project.pbxproj #将某个文件回滚到之前的某一个commitid版本
+回滚提交（复杂情况）如果你发现最新的一次提交忘了加某个文件，你可以通过 git commit —amend来修复，它会把最">
 
 
 
@@ -120,9 +117,9 @@ infer环境配置infer的官方网站是：http://fbinfer.com/ 。 在Mac下，�
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/06/28/infer-tool-analyize-iOS-project/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/07/01/git-skill-description/"/>
 
-  <title> 用infer工具分析iOS项目 | Hexo，你不看看么 </title>
+  <title> git使用技巧总结 | Hexo，你不看看么 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -252,7 +249,7 @@ infer环境配置infer的官方网站是：http://fbinfer.com/ 。 在Mac下，�
             
             
               
-                用infer工具分析iOS项目
+                git使用技巧总结
               
             
           </h1>
@@ -264,8 +261,8 @@ infer环境配置infer的官方网站是：http://fbinfer.com/ 。 在Mac下，�
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-28T15:08:38+08:00" content="2016-06-28">
-              2016-06-28
+            <time itemprop="dateCreated" datetime="2016-07-01T18:41:41+08:00" content="2016-07-01">
+              2016-07-01
             </time>
           </span>
 
@@ -311,13 +308,14 @@ infer环境配置infer的官方网站是：http://fbinfer.com/ 。 在Mac下，�
       
 
       
-        <p>infer是facebook推出的内存静态分析工具，用infer可以分析Objective-C/C编写的iOS项目。</p>
-<h3 id="infer环境配置"><a href="#infer环境配置" class="headerlink" title="infer环境配置"></a>infer环境配置</h3><p>infer的官方网站是：<a href="http://fbinfer.com/" target="_blank" rel="external">http://fbinfer.com/</a> 。 在Mac下，安装infer：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install infer</span><br></pre></td></tr></table></figure></p>
-<p>诊断iOS项目，需要安装facebook-clang-plugin插件，通过brew方式安装infer的时候，facebook-clang-plugin会自动安装。</p>
-<h3 id="分析xcodeproj项目"><a href="#分析xcodeproj项目" class="headerlink" title="分析xcodeproj项目"></a>分析xcodeproj项目</h3><p>以aq项目为例，在terminal中进入aq项目中aq.xcodeproj文件所在目录，执行infer命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ infer -- xcodebuild -target &quot;anqing&quot; -configuration &quot;Release&quot; -sdk iphonesimulator</span><br></pre></td></tr></table></figure></p>
-<p>输出的分析文件保存在infer-out/bugs.txt。</p>
-<h3 id="分析Pod管理的项目"><a href="#分析Pod管理的项目" class="headerlink" title="分析Pod管理的项目"></a>分析Pod管理的项目</h3><p>以jia项目为例，在terminal中进入jia项目中jia.xcworkspace文件所在目录，执行infer命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ infer -- xcodebuild -workspace jia.xcworkspace -scheme &quot;jia - Debug&quot; -configuration &quot;Debug&quot; -sdk iphonesimulator</span><br></pre></td></tr></table></figure></p>
-<p>分析文件同上。</p>
+        <h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git log #查看提交日志</span><br><span class="line">git show 3d503 #查看commitid为3d503的log</span><br><span class="line">git checkout 3d503 yuan/yuan.xcodeproj/project.pbxproj #将某个文件回滚到之前的某一个commitid版本</span><br></pre></td></tr></table></figure>
+<h3 id="回滚提交（复杂情况）"><a href="#回滚提交（复杂情况）" class="headerlink" title="回滚提交（复杂情况）"></a>回滚提交（复杂情况）</h3><p>如果你发现最新的一次提交忘了加某个文件，你可以通过 git commit —amend来修复，它会把最新的提交打回暂存区，并尝试重新提交。</p>
+<p>如果是更复杂的情况，比如不是最新的提交了。那你可以使用git revert。</p>
+<p>最新的一次提交别名也叫HEAD。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git revert HEAD</span><br></pre></td></tr></table></figure></p>
+<p>其他提交可以使用id:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git revert b10cc123</span><br></pre></td></tr></table></figure></p>
+<p>回滚提交时，发生冲突是非常频繁的。当文件被后面的提交修改了以后，git不能正确回滚。</p>
+<h3 id="综合使用"><a href="#综合使用" class="headerlink" title="综合使用"></a>综合使用</h3><p>获取最近一次提交的commitid：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rev-list head | head -1</span><br></pre></td></tr></table></figure></p>
+<p>获取提交的总次数（常在构建版本的时候，设置构建version的时候使用）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rev-list head | sort | wc -l | awk &apos;&#123;print $1&#125;&apos;</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -339,7 +337,7 @@ infer环境配置infer的官方网站是：http://fbinfer.com/ 。 在Mac下，�
       
         <div class="post-tags">
           
-            <a href="/tags/站点/" rel="tag">#站点</a>
+            <a href="/tags/系统/" rel="tag">#系统</a>
           
         </div>
       
@@ -348,17 +346,13 @@ infer环境配置infer的官方网站是：http://fbinfer.com/ 。 在Mac下，�
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/06/28/how-to-create-github-blog-using-hexo/" rel="next" title="how to create github io blog by using hexo">
-                <i class="fa fa-chevron-left"></i> how to create github io blog by using hexo
+              <a href="/2016/06/30/iOS-32bit-64bit-memory-analysis/" rel="next" title="iOS的32位和64位系统内存对齐分析">
+                <i class="fa fa-chevron-left"></i> iOS的32位和64位系统内存对齐分析
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/06/29/install-package-with-brew/" rel="prev" title="Mac上用brew安装软件包的常用用法">
-                Mac上用brew安装软件包的常用用法 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -472,7 +466,7 @@ infer环境配置infer的官方网站是：http://fbinfer.com/ 。 在Mac下，�
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#infer环境配置"><span class="nav-number">1.</span> <span class="nav-text">infer环境配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分析xcodeproj项目"><span class="nav-number">2.</span> <span class="nav-text">分析xcodeproj项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分析Pod管理的项目"><span class="nav-number">3.</span> <span class="nav-text">分析Pod管理的项目</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用命令"><span class="nav-number">1.</span> <span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#回滚提交（复杂情况）"><span class="nav-number">2.</span> <span class="nav-text">回滚提交（复杂情况）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#综合使用"><span class="nav-number">3.</span> <span class="nav-text">综合使用</span></a></li></ol></div>
             
           </div>
         </section>
